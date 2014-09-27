@@ -18,6 +18,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Do any additional setup after loading the view.
         refresh = UIRefreshControl()
+        self.refresh.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refresh)
         
         var t = Tweet()
@@ -47,6 +48,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Pass the selected object to the new view controller.
     }
     */
+    func refresh(sender:AnyObject) {
+        // refresh tweets
+//        self.tableView.reloadData()
+        
+        self.refresh.endRefreshing()
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -54,7 +61,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let c = tweets?.count {
-            println("view count")
             return c
         }
         return 0
@@ -66,4 +72,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.awakeFromNib()
         return cell
     }
+    
+    // to pass itself as the Reply/Retweet/Fave protocol
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destinationViewController = segue.destinationViewController as UINavigationController
+        var tweetDetailViewController = destinationViewController.viewControllers[0] as TweetDetailViewController
+        var tableViewCell = sender as UITableViewCell
+        let index = tableView.indexPathForCell(tableViewCell)
+        let row = index?.row
+        tweetDetailViewController.tweet = tweets?[row!]
+//        destinationViewController.delegate = self
+    }
+
 }

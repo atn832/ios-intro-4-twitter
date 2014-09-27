@@ -81,22 +81,22 @@
                                                         <constraint firstAttribute="width" constant="32" id="eLC-Nt-Mrl"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pN2-3F-9SM">
-                                                    <rect key="frame" x="83" y="154" width="32" height="32"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pN2-3F-9SM">
+                                                    <rect key="frame" x="83" y="155.5" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="8Oq-9r-i77"/>
                                                         <constraint firstAttribute="width" constant="32" id="TkT-3J-RmQ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F8S-mu-NoJ">
-                                                    <rect key="frame" x="215" y="154" width="32" height="32"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F8S-mu-NoJ">
+                                                    <rect key="frame" x="215" y="155.5" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="bVM-CC-L5W"/>
                                                         <constraint firstAttribute="width" constant="32" id="g2w-ce-BZ6"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ly-BJ-8W4">
-                                                    <rect key="frame" x="347" y="154" width="32" height="32"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Ly-BJ-8W4">
+                                                    <rect key="frame" x="347" y="155.5" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="EkA-jR-Ccd"/>
                                                         <constraint firstAttribute="width" constant="32" id="Giy-D8-IsA"/>
@@ -124,8 +124,8 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G6-ke-C3K">
-                                                    <rect key="frame" x="83" y="79" width="501" height="61"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G6-ke-C3K">
+                                                    <rect key="frame" x="83" y="79" width="501" height="62.5"/>
                                                     <string key="text">I have seen something. I have seen something. I have seen something. I have seen something. I have seen something. I have seen something. </string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -195,6 +195,7 @@
                                             <outlet property="profileImage" destination="IwG-vU-TEe" id="EQw-Uc-UAf"/>
                                             <outlet property="retweeterLabel" destination="AnC-qu-Ujm" id="O9T-5Q-wMW"/>
                                             <outlet property="time" destination="79y-lt-abD" id="sNr-GJ-bWg"/>
+                                            <segue destination="5nu-0B-o5T" kind="show" id="48x-0h-oC9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -223,7 +224,7 @@
         <!--Tweet-->
         <scene sceneID="7QE-2h-Sd1">
             <objects>
-                <viewController id="K0i-wt-EHb" sceneMemberID="viewController">
+                <viewController id="K0i-wt-EHb" customClass="TweetDetailViewController" customModule="TwitterClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gaK-CG-b2l"/>
                         <viewControllerLayoutGuide type="bottom" id="qbh-Ji-WMb"/>
@@ -408,6 +409,16 @@
                         <barButtonItem key="leftBarButtonItem" title="Home" id="N1J-LA-ov6"/>
                         <barButtonItem key="rightBarButtonItem" title="Reply" id="y7v-uH-tyM"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="favoriteCount" destination="jW3-xi-ExS" id="20r-qC-lXv"/>
+                        <outlet property="handle" destination="hvx-85-ZcJ" id="YbO-6c-mlS"/>
+                        <outlet property="message" destination="gfh-zE-v7o" id="ayB-a7-VRB"/>
+                        <outlet property="name" destination="2mn-pL-7ls" id="0Bt-CT-GXW"/>
+                        <outlet property="profilePicture" destination="d8w-xr-p4Y" id="6zQ-sA-Hq8"/>
+                        <outlet property="retweetCount" destination="2av-LD-r34" id="7Lx-L5-NEo"/>
+                        <outlet property="retweeter" destination="aqs-od-cFJ" id="7Ju-PL-NI0"/>
+                        <outlet property="time" destination="JjV-Y6-f0b" id="NRu-G5-LqD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m4h-aX-Iwn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
