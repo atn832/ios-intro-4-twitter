@@ -9,17 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    let consumerKey = "hlbGIuUjwpZHX2MKxoKiymo6c"
+    let consumerSecret = "8AiaZKXaoITD2QeFfpJRd94y7aPtNt62QKF3EdFj1eKzoQ1wVH"
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
