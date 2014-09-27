@@ -9,6 +9,7 @@
 import UIKit
 
 class TweetDetailViewController: UIViewController {
+    weak var actionDelegate: TwitterActionDelegate?
     var tweet: Tweet?
     
     @IBOutlet weak var retweeter: UILabel!
@@ -40,7 +41,37 @@ class TweetDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onReply(sender: AnyObject) {
+        actionDelegate?.didReply(self)
+        goBack()
+    }
 
+    @IBAction func onRetweet(sender: AnyObject) {
+        actionDelegate?.didRetweet(self)
+        goBack()
+    }
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        actionDelegate?.didFavorite(self)
+        goBack()
+    }
+
+    @IBAction func onHome(sender: AnyObject) {
+        goBack()
+    }
+
+    func goBack() {
+        navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+            println("done")
+        })
+        navigationController?.popViewControllerAnimated(true)
+        if (navigationController != nil) {
+            println("not nil")
+        }
+        dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+        })
+    }
     /*
     // MARK: - Navigation
 
