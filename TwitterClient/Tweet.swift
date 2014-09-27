@@ -9,5 +9,12 @@
 import UIKit
 
 class Tweet: NSObject {
-   
+    var profilePictureUrl: String?
+    var name: String?
+    var handle: String?
+    var message: String?
+    var datetime: TimeRecord?
+    var retweetCount: Int?
+    var favoriteCount: Int?
+    var retweeterHandle: String?
 }
