@@ -61,17 +61,20 @@ class TweetDetailViewController: UIViewController {
     }
 
     func goBack() {
-        navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-            println("done")
-        })
-        navigationController?.popViewControllerAnimated(true)
+        // Somehow I cannot go back if it is a push animation
+        /*
         if (navigationController != nil) {
             println("not nil")
         }
+        navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+        })
+        navigationController?.popViewControllerAnimated(true)
+        */
         dismissViewControllerAnimated(true, completion: { () -> Void in
-            
         })
     }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -81,5 +84,14 @@ class TweetDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func didReply(controller: UIViewController) -> Void {
+        println("reply")
+    }
+    func didRetweet(controller: UIViewController) -> Void {
+        println("retweet")
+    }
+    func didFavorite(controller: UIViewController) -> Void {
+        println("favorite")
+    }
 
 }

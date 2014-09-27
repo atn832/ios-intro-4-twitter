@@ -8,8 +8,8 @@
 
 import Foundation
 
-// @objc is needed to make delegates nullable
 @objc protocol TwitterActionDelegate {
+    // @objc is needed to make delegates nullable
     func didReply(controller: UIViewController) -> Void
     func didRetweet(controller: UIViewController) -> Void
     func didFavorite(controller: UIViewController) -> Void

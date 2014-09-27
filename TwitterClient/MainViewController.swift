@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TwitterActionDelegate {
     @IBOutlet weak var tableView: UITableView!
     var refresh: UIRefreshControl!
     var tweets: [Tweet]?
@@ -73,9 +73,19 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func didReply(controller: UIViewController) -> Void {
+    }
+    func didRetweet(controller: UIViewController) -> Void {
+    
+    }
+    func didFavorite(controller: UIViewController) -> Void {
+        
+    }
+
     // to pass itself as the Reply/Retweet/Fave protocol
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destinationViewController = segue.destinationViewController as UINavigationController
+        
         var tweetDetailViewController = destinationViewController.viewControllers[0] as TweetDetailViewController
         var tableViewCell = sender as UITableViewCell
         let index = tableView.indexPathForCell(tableViewCell)

@@ -195,7 +195,7 @@
                                             <outlet property="profileImage" destination="IwG-vU-TEe" id="EQw-Uc-UAf"/>
                                             <outlet property="retweeterLabel" destination="AnC-qu-Ujm" id="O9T-5Q-wMW"/>
                                             <outlet property="time" destination="79y-lt-abD" id="sNr-GJ-bWg"/>
-                                            <segue destination="5nu-0B-o5T" kind="show" id="48x-0h-oC9"/>
+                                            <segue destination="5nu-0B-o5T" kind="presentation" id="48x-0h-oC9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -211,7 +211,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="znM-Q6-Ouh">
                         <barButtonItem key="leftBarButtonItem" title="Sign Out" id="I5d-PF-Ppp"/>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="Scg-sS-PTi"/>
+                        <barButtonItem key="rightBarButtonItem" title="New" id="Scg-sS-PTi">
+                            <connections>
+                                <segue destination="Oks-yh-lWL" kind="presentation" id="jkV-8F-clQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="pgo-qj-aIe" id="Iwd-Qe-JAY"/>
@@ -219,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJP-Kd-3xc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2410" y="134"/>
+            <point key="canvasLocation" x="2314" y="134"/>
         </scene>
         <!--Tweet-->
         <scene sceneID="7QE-2h-Sd1">
@@ -436,7 +440,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m4h-aX-Iwn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3900" y="134"/>
+            <point key="canvasLocation" x="3772" y="134"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="i0X-yr-qF0">
@@ -517,7 +521,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pdB-Ra-I58" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3940" y="894"/>
+            <point key="canvasLocation" x="3772" y="-524"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="etW-Cg-DPH">
@@ -589,7 +593,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u5h-ft-KfV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3282" y="894"/>
+            <point key="canvasLocation" x="3088" y="-524"/>
         </scene>
     </scenes>
 </document>
