@@ -442,10 +442,10 @@
             </objects>
             <point key="canvasLocation" x="3772" y="134"/>
         </scene>
-        <!--View Controller-->
+        <!--Compose View Controller-->
         <scene sceneID="i0X-yr-qF0">
             <objects>
-                <viewController id="Edw-vh-78k" sceneMemberID="viewController">
+                <viewController id="Edw-vh-78k" customClass="ComposeViewController" customModule="TwitterClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qEg-jg-ML5"/>
                         <viewControllerLayoutGuide type="bottom" id="c5C-ov-R56"/>
@@ -485,8 +485,7 @@
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kZ-Bh-YhY">
                                 <rect key="frame" x="8" y="156" width="584" height="436"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -515,9 +514,20 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Joc-lC-0PQ">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="5ZW-gZ-Wfr"/>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="GCr-Rg-eyU"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="5ZW-gZ-Wfr">
+                            <connections>
+                                <action selector="onCancel:" destination="Edw-vh-78k" id="wXA-Py-YVj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="GCr-Rg-eyU">
+                            <connections>
+                                <action selector="onTweet:" destination="Edw-vh-78k" id="EK2-wr-OSk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="messageInput" destination="9kZ-Bh-YhY" id="MtY-aD-TUX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pdB-Ra-I58" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

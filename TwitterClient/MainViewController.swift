@@ -38,7 +38,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
     /*
     // MARK: - Navigation
 
@@ -86,12 +88,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var destinationViewController = segue.destinationViewController as UINavigationController
         
-        var tweetDetailViewController = destinationViewController.viewControllers[0] as TweetDetailViewController
-        var tableViewCell = sender as UITableViewCell
-        let index = tableView.indexPathForCell(tableViewCell)
-        let row = index?.row
-        tweetDetailViewController.tweet = tweets?[row!]
-//        destinationViewController.delegate = self
+        if (destinationViewController.viewControllers[0] is TweetDetailViewController) {
+            var tweetDetailViewController = destinationViewController.viewControllers[0] as TweetDetailViewController
+            var tableViewCell = sender as UITableViewCell
+            let index = tableView.indexPathForCell(tableViewCell)
+            let row = index?.row
+            tweetDetailViewController.tweet = tweets?[row!]
+            //        destinationViewController.delegate = self
+        }
     }
 
 }
