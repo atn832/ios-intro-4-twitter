@@ -8,25 +8,27 @@
 
 import UIKit
 
-class TwitterClient: NSObject, UIApplicationDelegate {
+let ConsumerKey = "hlbGIuUjwpZHX2MKxoKiymo6c"
+let ConsumerSecret = "8AiaZKXaoITD2QeFfpJRd94y7aPtNt62QKF3EdFj1eKzoQ1wVH"
+
+class TwitterClient: NSObject {
+
     var networkManager: BDBOAuth1RequestOperationManager!
     var consumerKey: String!
     var consumerSecret: String!
+    
+    class var sharedInstance: TwitterClient {
+        struct Static {
+            static let instance = TwitterClient(consumerKey: ConsumerKey, consumerSecret: ConsumerSecret)
+        }
+        return Static.instance
+    }
     
     init(consumerKey: String!, consumerSecret: String!) {
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
 
-        networkManager = BDBOAuth1RequestOperationManager(baseURL: NSURL.URLWithString("https://api.twitter.com/oauth/request_token"), consumerKey: consumerKey, consumerSecret: consumerSecret)
-        networkManager.fetchRequestTokenWithPath("/oauth/request_token", method: "POST", callbackURL: NSURL.URLWithString("twitterclient://request"), scope: nil, success: { (requestToken: BDBOAuthToken!) -> Void in
-            println(requestToken)
-            //            NSString *authURL = [NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token];
-            //            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:authURL]];
-            let authURL = "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)"
-            UIApplication.sharedApplication().openURL(NSURL.URLWithString(authURL))
-            }) { (error: NSError!) -> Void in
-                println(error)
-            }
+        networkManager = BDBOAuth1RequestOperationManager(baseURL: NSURL.URLWithString("https://api.twitter.com"), consumerKey: consumerKey, consumerSecret: consumerSecret)
 
         
 //        var baseUrl = NSURL(string: "http://api.yelp.com/v2/")
@@ -36,33 +38,21 @@ class TwitterClient: NSObject, UIApplicationDelegate {
 //        self.requestSerializer.saveAccessToken(token)
     }
     
+    func fetchRequestTokenWithPath() {
+        networkManager.requestSerializer.removeAccessToken()
+        networkManager.fetchRequestTokenWithPath("oauth/request_token", method: "GET", callbackURL: NSURL.URLWithString("twitterclient://request"), scope: nil, success: { (requestToken: BDBOAuthToken!) -> Void in
+            println(requestToken)
+            //            NSString *authURL = [NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token];
+            //            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:authURL]];
+            let authURL = "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)"
+            UIApplication.sharedApplication().openURL(NSURL.URLWithString(authURL))
+            }) { (error: NSError!) -> Void in
+                println(error)
+        }
+    }
+    
     func search() -> [Tweet] {
         return []
     }
-
-    
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String, annotation: AnyObject?) -> Bool {
-        println(url)
-        println(annotation)
-        if url.scheme? === "twitterclient" {
-            if url.host? === "request" {
-                let parameters = url.dictionaryWithValuesForKeys(["oauth_token", "oauth_verifier"])
-                if (parameters["oauth_token"] != nil && parameters["oauth_verifier"] != nil) {
-                    println("something")
-                    networkManager.fetchAccessTokenWithPath("/oauth/access_token", method: "POST", requestToken: BDBOAuthToken(queryString: url.query), success: { (authToken: BDBOAuthToken!) -> Void in
-                        println(authToken)
-                        }, failure: { (error: NSError!) -> Void in
-                        println(error)
-                    })
-                }
-                
-            }
-            println("yes")
-            return true;
-        }
-        println("no")
-        return false;
-    }
-    
 
 }

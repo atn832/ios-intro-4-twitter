@@ -9,10 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let consumerKey = "hlbGIuUjwpZHX2MKxoKiymo6c"
-    let consumerSecret = "8AiaZKXaoITD2QeFfpJRd94y7aPtNt62QKF3EdFj1eKzoQ1wVH"
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -20,6 +16,10 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func onLogin(sender: AnyObject) {
+        TwitterClient.sharedInstance.fetchRequestTokenWithPath()
     }
 }
 
