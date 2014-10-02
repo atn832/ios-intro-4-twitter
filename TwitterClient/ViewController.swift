@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TwitterClientDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -19,7 +19,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onLogin(sender: AnyObject) {
+        TwitterClient.sharedInstance.delegate = self
         TwitterClient.sharedInstance.fetchRequestTokenWithPath()
+    }
+    
+    func didAuthenticate(client: TwitterClient) {
+        performSegueWithIdentifier("ToMainSegue", sender: self)
     }
 }
 

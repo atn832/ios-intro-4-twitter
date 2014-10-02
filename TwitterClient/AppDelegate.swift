@@ -54,12 +54,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 TwitterClient.sharedInstance.networkManager.fetchAccessTokenWithPath("/oauth/access_token", method: "POST", requestToken: BDBOAuthToken(queryString: url.query), success: { (authToken: BDBOAuthToken!) -> Void in
                         println("authtoken \(authToken)")
                     TwitterClient.sharedInstance.networkManager.requestSerializer.saveAccessToken(authToken)
-                    println("getting timeline")
-                    TwitterClient.sharedInstance.networkManager.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (op: AFHTTPRequestOperation!, result: AnyObject!) -> Void in
-                        println(result)
-                        }, failure: { (op: AFHTTPRequestOperation!, error:NSError!) -> Void in
-                        println(error)
-                    })
+                    if (TwitterClient.sharedInstance.delegate != nil) {
+                        TwitterClient.sharedInstance.delegate?.didAuthenticate(TwitterClient.sharedInstance)
+                    }
+//                    println("getting timeline")
+//                    TwitterClient.sharedInstance.networkManager.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (op: AFHTTPRequestOperation!, result: AnyObject!) -> Void in
+//                        println(result)
+//                        }, failure: { (op: AFHTTPRequestOperation!, error:NSError!) -> Void in
+//                        println(error)
+//                    })
                     }, failure: { (error: NSError!) -> Void in
                         println(error)
                 })

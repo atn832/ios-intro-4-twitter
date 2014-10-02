@@ -14,6 +14,7 @@ let ConsumerSecret = "8AiaZKXaoITD2QeFfpJRd94y7aPtNt62QKF3EdFj1eKzoQ1wVH"
 class TwitterClient: NSObject {
 
     var networkManager: BDBOAuth1RequestOperationManager!
+    var delegate: TwitterClientDelegate?
     var consumerKey: String!
     var consumerSecret: String!
     
