@@ -33,6 +33,10 @@ class TweetTableViewCell: UITableViewCell {
         name.text = tweet?.name
         handle.text = tweet?.handle
         message.text = tweet?.message
+        let url = tweet?.profilePictureUrl
+        if (url != nil) {
+            profileImage.setImageWithURL(NSURL.URLWithString(url!))
+        }
         time.text = "Some time ago" //tweet?.datetime
     }
 
