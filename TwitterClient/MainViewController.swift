@@ -21,11 +21,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.refresh.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refresh)
         
-        var t = Tweet()
-        t.name = "Jeremy"
-        t.handle = "jeremy"
-        t.message = "I just saw something!"
-        tweets = [t]
+        TwitterClient.sharedInstance.search { (tweets: [Tweet]) -> Void in
+            self.tweets = tweets
+            self.tableView.reloadData()
+        }
         
         tableView.delegate = self
         tableView.dataSource = self

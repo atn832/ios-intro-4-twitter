@@ -42,17 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String, annotation: AnyObject?) -> Bool {
-        println(url)
-        println(annotation)
-        println("scheme \(url.scheme!)")
         let scheme = url.scheme!
         if scheme == "twitterclient" {
-            println("host: \(url.host)")
             let host = url.host!
             if host == "request" {
-                println("something")
                 TwitterClient.sharedInstance.networkManager.fetchAccessTokenWithPath("/oauth/access_token", method: "POST", requestToken: BDBOAuthToken(queryString: url.query), success: { (authToken: BDBOAuthToken!) -> Void in
-                        println("authtoken \(authToken)")
                     TwitterClient.sharedInstance.networkManager.requestSerializer.saveAccessToken(authToken)
                     if (TwitterClient.sharedInstance.delegate != nil) {
                         TwitterClient.sharedInstance.delegate?.didAuthenticate(TwitterClient.sharedInstance)

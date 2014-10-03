@@ -52,8 +52,29 @@ class TwitterClient: NSObject {
         }
     }
     
-    func search() -> [Tweet] {
-        return []
+    func search(completion: ([Tweet]) -> Void) -> Void {
+        TwitterClient.sharedInstance.networkManager.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (op: AFHTTPRequestOperation!, result: AnyObject!) -> Void in
+            println(result)
+            let dics = result as [NSDictionary]
+            let tweets = dics.map({(d:NSDictionary) -> Tweet in
+                var t = Tweet()
+                let user = d["user"] as NSDictionary
+                t.name = user["name"] as String
+                t.handle = user["screen_name"] as String
+                t.message = d["text"] as String
+                t.profilePictureUrl = user["profile_image_url_https"] as String
+                return t
+            })
+            completion(tweets)
+//            var t = Tweet()
+//            t.name = "Jeremy"
+//            t.handle = "jeremy"
+//            t.message = "I just saw something!"
+//            completion([t])
+
+        }, failure: { (op: AFHTTPRequestOperation!, error:NSError!) -> Void in
+            println(error)
+        })
     }
 
 }
