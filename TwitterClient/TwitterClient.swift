@@ -63,6 +63,11 @@ class TwitterClient: NSObject {
                 t.handle = user["screen_name"] as String
                 t.message = d["text"] as String
                 t.profilePictureUrl = user["profile_image_url_https"] as String
+                
+                let createdAtString = d["created_at"] as? String
+                var formatter = NSDateFormatter()
+                formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+                t.createdAt = formatter.dateFromString(createdAtString!)
                 return t
             })
             completion(tweets)

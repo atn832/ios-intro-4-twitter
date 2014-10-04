@@ -17,4 +17,5 @@ class Tweet: NSObject {
     var retweetCount: Int?
     var favoriteCount: Int?
     var retweeterHandle: String?
+    var createdAt: NSDate?
 }
