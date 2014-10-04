@@ -21,17 +21,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.refresh.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refresh)
         
-        TwitterClient.sharedInstance.search { (tweets: [Tweet]) -> Void in
-            self.tweets = tweets
-            self.tableView.reloadData()
-        }
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
         tableView.rowHeight = UITableViewAutomaticDimension
-    }
 
+        refresh(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -50,9 +47,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     */
     func refresh(sender:AnyObject) {
-        // refresh tweets
-//        self.tableView.reloadData()
-        
+        TwitterClient.sharedInstance.search { (tweets: [Tweet]) -> Void in
+            self.tweets = tweets
+            self.tableView.reloadData()
+        }
         self.refresh.endRefreshing()
     }
     
